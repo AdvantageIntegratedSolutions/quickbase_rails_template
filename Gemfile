@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'sqlite3'
 gem 'puma'
 gem 'quickbase_record', '0.4.2'
 
@@ -16,5 +17,6 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'pry'
   gem 'spring'
+  gem 'rspec-rails'
 end
 

@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new', as: 'register'
   resources :users, only: [:create]
 
+  get '/forgot_password', to: 'forgot_passwords#new', as: 'forgot_password'
+  resources :forgot_passwords, only: [:create]
+
+  resources :password_resets, only: [:show, :create]
+
   resources :documents, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.

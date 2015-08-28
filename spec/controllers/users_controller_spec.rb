@@ -10,7 +10,7 @@ describe UsersController do
 
   describe 'POST create' do
     context 'with missing inputs' do
-      it 'renders the registration page' do
+      it 'renders the registration template' do
         post :create, user: {email: '', password: ''}
         expect(response).to render_template :new
       end
@@ -32,7 +32,7 @@ describe UsersController do
     end
 
     context 'with a non-matching email address from QuickBase' do
-      it 'renders the registration page' do
+      it 'renders the registration template' do
         user = User.new(email: 'not_a_match@example.com', password: 'password')
         post :create, user: {email: user.email, password: user.password}
         expect(response).to render_template :new

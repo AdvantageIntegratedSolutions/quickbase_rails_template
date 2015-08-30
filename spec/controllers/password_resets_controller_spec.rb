@@ -14,7 +14,7 @@ describe PasswordResetsController do
         @user = User.new(id: 1, password: 'password', token: '123')
         expect(@user).to receive(:save)
         expect(User).to receive(:where).and_return([@user])
-        post :create, id: '123', token: @user.token
+        post :create, id: @user.token
       end
 
       it "redirects to the root path" do

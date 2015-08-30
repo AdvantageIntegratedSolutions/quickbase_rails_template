@@ -3,9 +3,9 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    user = User.where(token: params[:token]).first
+    user = User.where(token: params[:id]).first
 
-    if user && params[:token].present?
+    if user && params[:id].present?
       user.set_encrypted_password
       user.generate_token
       user.save

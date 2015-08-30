@@ -16,7 +16,4 @@ class PasswordResetsController < ApplicationController
 
     redirect_to root_path
   end
-
-  def expired_token
-  end
 end

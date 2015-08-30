@@ -19,6 +19,7 @@ describe ForgotPasswordsController do
     context "with an existing email" do
       before do
         @user = double('user', email: 'test@example.com')
+        expect(@user).to receive(:update_attributes).with(encrypted_password: '', registration_status: 'Reset')
         expect(User).to receive(:where).and_return([@user])
       end
 

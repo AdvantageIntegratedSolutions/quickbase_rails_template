@@ -13,13 +13,10 @@ class UsersController < ApplicationController
     @user = User.where(email: params[:user][:email]).first
 
     if @user
-      @user.assign_attributes(user_params)
-      @user.generate_token
-      @user.set_encrypted_password
-      @user.save
+      create_user
       redirect_to documents_path
     else
-      flash[:danger] = "Sorry, that email address cannot access this site."
+      flash[:danger] = "Sorry, that email address is not authorized to register."
       render :new
     end
   end
@@ -28,5 +25,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def create_user
+    @user.assign_attributes(user_params)
+    @user.registration_status = 'Active'
+    @user.generate_token
+    @user.set_encrypted_password
+    @user.save
   end
 end

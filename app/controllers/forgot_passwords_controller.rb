@@ -6,6 +6,7 @@ class ForgotPasswordsController < ApplicationController
     user = User.where(email: params[:email]).first
 
     if user
+      user.update_attributes(encrypted_password: '', registration_status: 'Reset')
       AppMailer.send_forgot_password(user).deliver_now
       flash[:success] = "Your request was received. Please check your inbox for instructions on resetting your password."
       redirect_to root_path

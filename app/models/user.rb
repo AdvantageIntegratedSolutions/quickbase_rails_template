@@ -9,7 +9,8 @@ class User
     t.string :email, 6
     t.string :encrypted_password, 7
     t.string :registration_status, 8
-    t.number :related_customer, 9
+    t.number :related_customer, 9, :read_only
+    t.string :token, 10
   end
 
   validates :email, :password, presence: true
@@ -22,5 +23,9 @@ class User
   def set_encrypted_password
     self.encrypted_password = BCrypt::Password.create(password) if password
     self.password = nil
+  end
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64
   end
 end

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
     if @user
       @user.assign_attributes(user_params)
+      @user.generate_token
       @user.set_encrypted_password
       @user.save
       redirect_to documents_path

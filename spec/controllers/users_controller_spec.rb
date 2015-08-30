@@ -27,10 +27,16 @@ describe UsersController do
         post :create, user: {email: @user.email, password: @user.password}
       end
 
-      it "sets the encrypted password" do
+      it "sets the user's encrypted password" do
         allow_any_instance_of(User).to receive(:save)
         post :create, user: {email: @user.email, password: @user.password}
         expect(assigns(:user).encrypted_password).to be_present
+      end
+
+      it "sets the user's token" do
+        allow_any_instance_of(User).to receive(:save)
+        post :create, user: {email: @user.email, password: @user.password}
+        expect(assigns(:user).token).to be_present
       end
     end
 
